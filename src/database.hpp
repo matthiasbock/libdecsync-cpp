@@ -1,3 +1,5 @@
+#ifndef DATABASE_HPP
+#define DATABASE_HPP
 
 #include "sync_type.hpp"
 
@@ -25,3 +27,5 @@ namespace DecSync {
         vector<string> load(string& root_path);
     };
 }
+
+#endif // DATABASE_HPP

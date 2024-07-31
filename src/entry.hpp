@@ -1,3 +1,5 @@
+#ifndef ENTRY_HPP
+#define ENTRY_HPP
 
 #include <sstream>
 #include <string>
@@ -24,3 +26,5 @@ namespace DecSync {
         void load(istringstream);
     };
 }
+
+#endif // ENTRY_HPP

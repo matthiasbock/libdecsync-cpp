@@ -1,3 +1,5 @@
+#ifndef APP_HPP
+#define APP_HPP
 
 #include <string>
 #include <vector>
@@ -32,3 +34,5 @@ namespace DecSync {
         void load(string folder_path);
     };
 }
+
+#endif // APP_HPP

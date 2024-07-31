@@ -1,3 +1,5 @@
+#ifndef PATH_HPP
+#define PATH_HPP
 
 #include <sstream>
 #include <string>
@@ -30,3 +32,5 @@ namespace DecSync {
         ostringstream serialize();
     };
 }
+
+#endif // PATH_HPP

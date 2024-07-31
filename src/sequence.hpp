@@ -1,3 +1,5 @@
+#ifndef SEQUENCE_HPP
+#define SEQUENCE_HPP
 
 #include <string>
 #include <vector>
@@ -24,3 +26,5 @@ namespace DecSync {
         void load(string& filepath);
     };
 }
+
+#endif // SEQUENCE_HPP

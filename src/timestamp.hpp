@@ -1,3 +1,5 @@
+#ifndef TIMESTAMP_HPP
+#define TIMESTAMP_HPP
 
 #include <string>
 #include <strstream>
@@ -26,3 +28,5 @@ namespace DecSync {
         const string serialize();
     };
 }
+
+#endif // TIMESTAMP_HPP
