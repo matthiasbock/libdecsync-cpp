@@ -1,5 +1,9 @@
 
+#include <sstream>
 #include <string>
+#include <strstream>
+#include <regex>
+
 
 using namespace std;
 
@@ -8,26 +12,21 @@ namespace DecSync {
     class Path
     {
     public:
-        bool info;
-        bool resources;
-        string uid;
+        bool info = false;
+        bool resources = false;
+        string uid = NULL;
 
-        Path(): info(false), resources(false), uid("") {};
+        /**
+         * @brief Parses a string or istringstream
+         *
+         * First find the square opening bracket,
+         * then read until the square closing bracket.
+         * Split what was read using comma as delimiter.
+         * Strip surrounding apostrophes or quotes from the split items.
+         * return the list of parsed items.
+         */
+        void parse(istringstream& input);
 
-        string serialize() {
-            if (this->info) {
-                return "[\"info\"]";
-            }
-            if (this->resources) {
-                const string _resources1 = "[\"resources\", \"";
-                const string _resources2 = "\"]";
-                if (this->uid.empty()) {
-                    return _resources1 + _resources2;
-                } else {
-                    return _resources1 + this->uid + _resources2;
-                }
-            }
-            return "";
-        }
+        ostringstream serialize();
     };
 }

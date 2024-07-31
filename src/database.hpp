@@ -1,20 +1,17 @@
 
-#include <string>
-#include <vector>
+#include "sync_type.hpp"
 
 
 using namespace std;
 
 
 namespace DecSync {
-    class Collection
-    {
-        sync_type_e sync_type;
-        char* collection_id;
-        char* app_id;
-        info_t* info;
-        sequences_t* sequences;
+    class Database{
+    protected:
+        string root_path;
+        vector<SyncType> sync_types;
 
+    public:
         /**
          * @brief Get a list of synced folders within the given root path.
          *
@@ -25,7 +22,6 @@ namespace DecSync {
          * @param root_path The path to the root directory to search for synced folders.
          * @return A vector of strings containing the names of synced folders.
          */
-        vector<string> get_sync_folders(const string& root_path);
-
+        vector<string> load(string& root_path);
     };
 }

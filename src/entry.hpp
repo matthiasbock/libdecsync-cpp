@@ -1,26 +1,26 @@
 
+#include <sstream>
 #include <string>
 
 #include "path.hpp"
+#include "timestamp.hpp"
 
 
 using namespace std;
 
 
 namespace DecSync {
-
     class Collection;
 
     class Entry{
-        Collection* collection;
-        string filename;
+        Collection* collection = NULL;
+        string filename = NULL;
 
-        Path* path;
-        string timestamp;
-        string key;
-        string value;
+        Path* path = NULL;
+        Timestamp* timestamp = NULL;
+        string key = NULL;
+        string value = NULL;
 
-        Entry(): collection(NULL), filename(""), key(""), value("") {};
+        void load(istringstream);
     };
-
 }

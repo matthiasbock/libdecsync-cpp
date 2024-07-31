@@ -1,0 +1,16 @@
+# Build artifacts
+build/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# Editor temporary files
+*~
+*.tmp
+*.swp
+
+# System files
+.DS_Store
+Thumbs.db

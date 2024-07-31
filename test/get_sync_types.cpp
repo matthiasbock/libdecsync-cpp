@@ -1,10 +1,7 @@
+#include "../src/decsync.hpp"
 
-#include <filesystem>
+#include <boost/test/unit_test.hpp>
 #include <algorithm>
-#include <vector>
-#include <string>
-
-#include "decsync.hpp"
 
 
 using namespace DecSync;
@@ -12,20 +9,34 @@ using namespace std;
 namespace fs = std::filesystem;
 
 
-vector<string> DecSync::get_sync_folders(const string& root_path) {
-  vector<string> sync_folders;
+// Create a test fixture to reuse the same temporary directory
+struct GetSyncedFoldersTest {
+    fs::path temp_dir;
 
-  // Iterate over all entries in the root path
-  for (const auto & entry : fs::directory_iterator(root_path)) {
-    if (entry.is_directory()) {
-      // Check if the folder name matches any of the sync_type_names
-      string folder_name = entry.path().filename().string();
-      if (find(begin(sync_type_name), end(sync_type_name), folder_name) != end(sync_type_name)) {
-        sync_folders.push_back(folder_name);
-      }
+    GetSyncedFoldersTest() {
+        temp_dir = fs::temp_directory_path() / "decsync_test";
+        fs::create_directories(temp_dir);
     }
-  }
 
-  return sync_folders;
+    ~GetSyncedFoldersTest() {
+        fs::remove_all(temp_dir);
+    }
+};
+
+
+BOOST_FIXTURE_TEST_CASE(TestGetSyncedFolders, GetSyncedFoldersTest) {
+    // Create some test folders
+    fs::create_directories(temp_dir / "calendars");
+    fs::create_directories(temp_dir / "contacts");
+    fs::create_directories(temp_dir / "tasks");
+    fs::create_directories(temp_dir / "some_other_folder");
+
+    // Call the function
+    vector<string> synced_folders = get_synced_folders(temp_dir.string());
+
+    // Check the results
+    BOOST_CHECK_EQUAL(synced_folders.size(), 3);
+    BOOST_CHECK(find(synced_folders.begin(), synced_folders.end(), "calendars") != synced_folders.end());
+    BOOST_CHECK(find(synced_folders.begin(), synced_folders.end(), "contacts") != synced_folders.end());
+    BOOST_CHECK(find(synced_folders.begin(), synced_folders.end(), "tasks") != synced_folders.end());
 }
-
