@@ -1,10 +1,12 @@
+
+# Data
+data
+
+# Related projects
+related/
+
 # Build artifacts
 build/
-
-# CMake generated files
-CMakeCache.txt
-CMakeFiles/
-cmake_install.cmake
 
 # Editor temporary files
 *~
@@ -14,3 +16,21 @@ cmake_install.cmake
 # System files
 .DS_Store
 Thumbs.db
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+
+# C++ build artifacts
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+*.dSYM
+*.pdb
+*.map
