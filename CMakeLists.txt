@@ -12,6 +12,16 @@ find_package(
     unit_test_framework
 )
 
+# Check if ccache is available
+find_program(CCACHE_FOUND ccache)
+if(CCACHE_FOUND)
+    message(STATUS "Using ccache for compilation")
+    set(CMAKE_C_COMPILER_LAUNCHER ccache)
+    set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
+else()
+    message(STATUS "ccache not found")
+endif()
+
 # Add source directory for the main code
 add_subdirectory(src)
 
